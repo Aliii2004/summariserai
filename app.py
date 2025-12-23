@@ -1,11 +1,10 @@
 """
-AI Lesson Plan Generator v9.1 - ADAPTIVE
+AI Lesson Plan Generator - ADAPTIVE
 Works with ANY book, ANY language, ANY subject
 """
 
 import streamlit as st
 import base64
-import os
 import re
 import time
 from groq import Groq
@@ -963,44 +962,45 @@ if uploaded and st.button("🚀 Generate Lesson Plan", type="primary"):
 
     # Export
     st.markdown("## 💾 Export")
-    c1, c2, c3 = st.columns(3)
-
-    with c1:
-        pdf_bytes = create_pdf(lesson_plan)
-        if pdf_bytes:
-            st.download_button(
-                "📥 Download PDF",
-                pdf_bytes,
-                "lesson_plan.pdf",
-                "application/pdf",
-                type="primary"
-            )
-
-    with c2:
-        export_data = {
-            'lesson_plan': lesson_plan,
-            'analysis': analysis,
-            'metrics': metrics,
-            'timings': timings
-        }
-        st.download_button(
-            "📦 Download JSON",
-            json.dumps(export_data, ensure_ascii=False, indent=2, default=str),
-            "lesson_plan.json",
-            "application/json"
-        )
-
-    with c3:
-        st.download_button(
-            "📄 Download TXT",
-            lesson_plan,
-            "lesson_plan.txt",
-            "text/plain"
-        )
+    st.download_button(
+        "📄 Download TXT",
+        lesson_plan,
+        "lesson_plan.txt",
+        "text/plain"
+    )
+    # c1, c2, c3 = st.columns(3)
+    #
+    # with c1:
+    #     pdf_bytes = create_pdf(lesson_plan)
+    #     if pdf_bytes:
+    #         st.download_button(
+    #             "📥 Download PDF",
+    #             pdf_bytes,
+    #             "lesson_plan.pdf",
+    #             "application/pdf",
+    #             type="primary"
+    #         )
+    #
+    # with c2:
+    #     export_data = {
+    #         'lesson_plan': lesson_plan,
+    #         'analysis': analysis,
+    #         'metrics': metrics,
+    #         'timings': timings
+    #     }
+    #     st.download_button(
+    #         "📦 Download JSON",
+    #         json.dumps(export_data, ensure_ascii=False, indent=2, default=str),
+    #         "lesson_plan.json",
+    #         "application/json"
+    #     )
+    #
+    # with c3:
+    #
 
 # Footer
 st.divider()
 st.markdown(
-    "<center>🎓 AI Lesson Plan Generator v9.1 - Adaptive</center>",
+    "<center>🎓 AI Lesson Plan Generator - Adaptive</center>",
     unsafe_allow_html=True
 )
